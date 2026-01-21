@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACEX𝕄𝕃ℙ𝕃𝔸™😈⚔️ </title>
+    <style>
+        :root {
+            --neon-cyan: #00f0ff;
+            --neon-magenta: #ff00ea;
+            --neon-green: #39ff14;
+            --neon-yellow: #ffe700;
+            --dark-core: #0a0a0f;
+            --dark-panel: rgba(10, 10, 20, 0.94);
+            --glow-cyan: rgba(0, 240, 255, 0.75);
+            --glow-magenta: rgba(255, 0, 234, 0.65);
+            --text-light: #ffffff;
+        }
+
+        body { 
+            background: linear-gradient(135deg, #0a0a0f 0%, #000814 50%, #0a0014 100%);
+            color: var(--text-light); 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            margin: 0; 
+            padding: 0;
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
+
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(5, 5, 15, 0.96);
+            backdrop-filter: blur(20px);
+            padding: 6px 10px;
+            z-index: 100;
+            border-bottom: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 30px var(--glow-cyan);
+            text-align: center;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .logo { 
+            width: 28px; 
+            height: 28px; 
+            filter: drop-shadow(0 0 10px var(--neon-cyan)) brightness(1.2); 
+        }
+
+        .title { 
+            font-size: 20px; 
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0; 
+            font-weight: 900; 
+            letter-spacing: 1.8px;
+            text-shadow: 0 0 16px var(--glow-cyan);
+        }
+
+        .download-buttons { 
+            display: flex; 
+            gap: 5px; 
+            justify-content: center;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn, .list-btn {
+            padding: 4px 10px;
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 5px;
+            font-size: 9.5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0,240,255,0.3);
+            cursor: pointer;
+        }
+
+        .download-btn:hover, .list-btn:hover { 
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
+            color: black;
+            box-shadow: 0 0 20px var(--glow-cyan), 0 0 35px var(--glow-magenta);
+            transform: translateY(-2px);
+        }
+
+        .list-btn.active {
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-green));
+            color: black;
+            box-shadow: 0 0 25px var(--glow-cyan), 0 0 40px rgba(57,255,20,0.7);
+            border-color: var(--neon-green);
+        }
+
+        .list-btn.events.active {
+            background: linear-gradient(45deg, var(--neon-magenta), var(--neon-green));
+            border-color: var(--neon-magenta);
+        }
+
+        .controls-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 4px;
+        }
+
+        .instructions { 
+            font-size: 9.5px; 
+            color: var(--neon-yellow); 
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255,231,0,0.8);
+            text-transform: uppercase;
+            flex-shrink: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #search {
+            width: 100%;
+            max-width: 140px;
+            padding: 5px 8px;
+            border-radius: 5px;
+            border: 1px solid #222244;
+            background: rgba(20,20,40,0.7);
+            color: var(--neon-cyan);
+            font-size: 10px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        #search:focus { 
+            border-color: var(--neon-magenta); 
+            max-width: 160px;
+            box-shadow: 0 0 18px var(--glow-magenta);
+        }
+
+        .main-content {
+            padding-top: 100px;
+            padding-bottom: 70px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            padding: 10px;
+        }
+
+        .card {
+            background: var(--dark-panel);
+            padding: 8px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(0,240,255,0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover { 
+            border-color: var(--neon-cyan);
+            transform: translateY(-6px) scale(1.04);
+            box-shadow: 0 0 30px var(--glow-cyan);
+            background: rgba(15, 25, 35, 0.97);
+        }
+
+        .card.selected { 
+            background: linear-gradient(135deg, #0d1f2f, #1a0033);
+            box-shadow: 0 0 35px var(--glow-cyan), 0 0 60px var(--glow-magenta);
+            transform: scale(1.08);
+        }
+
+        .card.selected span { 
+            color: #ffffff; 
+            font-weight: 900; 
+            text-shadow: 0 0 12px rgba(255,255,255,0.9); 
+        }
+
+        .card img { 
+            width: 45px; 
+            height: 45px; 
+            object-fit: contain; 
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 10px var(--neon-cyan));
+            transition: transform 0.4s;
+        }
+
+        .card:hover img { transform: scale(1.15); }
+
+        .card span { 
+            font-size: 9.5px; 
+            color: var(--text-light); 
+            display: block;
+            min-height: 4.5em;
+            overflow: visible;
+            text-shadow: 0 0 8px rgba(0,240,255,0.7), 0 1px 2px black;
+            font-weight: 600;
+            line-height: 1.28;
+            word-break: break-word;
+            hyphens: auto;
+            padding: 0 3px;
+        }
+
+        footer { 
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            text-align: center; 
+            padding: 8px; 
+            font-size: 9px; 
+            color: var(--neon-cyan);
+            background: rgba(5,5,15,0.94);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid var(--neon-cyan);
+            z-index: 100;
+            text-shadow: 0 0 10px var(--glow-cyan);
+        }
+
+        @media (orientation: landscape) {
+            .main-content { padding-top: 95px; }
+            .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+
+        .loading { 
+            text-align: center; 
+            padding: 60px; 
+            color: var(--neon-magenta); 
+            font-weight: bold;
+            font-size: 1.3em;
+            text-shadow: 0 0 20px var(--glow-magenta);
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-top">
+        <img src="https://i.postimg.cc/nVjy8DqR/logo1-21-233735.png" alt="Logo" class="logo">
+        <h2 class="title">ACEX𝕄𝕃ℙ𝕃𝔸™😈⚔️</h2>
+    </div>
+
+    <div class="download-buttons">
+        <a href="#" class="download-btn">Aceserve+Vlc</a>
+        <a href="#" class="download-btn">Acestream</a>
+        <button class="list-btn active" id="btn-canales">Canales</button>
+        <button class="list-btn events" id="btn-eventos">Eventos</button>
+    </div>
+
+    <div class="controls-row">
+        <div class="instructions">Utiliza Aceserve + VLC ó Acestream</div>
+        <input type="text" id="search" placeholder="BUSCAR..." onkeyup="filter()">
+    </div>
+</div>
+
+<div class="main-content">
+    <div id="loading" class="loading">CARGANDO CANALES...</div>
+    <div id="channel-list" class="grid" style="display:none;"></div>
+</div>
+
+<footer>
+    <b>ACEX𝕄𝕃ℙ𝕃𝔸™🙉 ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️😈
+</footer>
+
+<script>
+    const MAIN_M3U = 'https://ipfs.io/ipns/k2k4r8oqlcjxsritt5mczkcn4mmvcmymbqw7113fz2flkrerfwfps004/data/listas/lista_iptv.m3u';
+    const EVENTS_M3U = 'https://raw.githubusercontent.com/Icastresana/lista1/main/eventos.m3u';
+    const FIXED_LOGO = 'https://i.postimg.cc/nVjy8DqR/logo1-21-233735.png';
+
+    let channels = [];
+    let selectedCard = null;
+    let currentMode = 'canales';
+
+    const btnCanales = document.getElementById('btn-canales');
+    const btnEventos = document.getElementById('btn-eventos');
+
+    function setActiveButton(activeBtn) {
+        btnCanales.classList.remove('active');
+        btnEventos.classList.remove('active');
+        activeBtn.classList.add('active');
+    }
+
+    function extractId(rawUrl) {
+        const url = rawUrl.trim();
+        if (url.startsWith('acestream://')) return url.substring(12);
+        if (/^[a-f0-9]{40}$/i.test(url)) return url;
+        const arrowMatch = url.match(/([a-f0-9]{40})\s*-->/i);
+        if (arrowMatch) return arrowMatch[1];
+        const idMatch = url.match(/id=([a-f0-9]{40})/i);
+        if (idMatch) return idMatch[1];
+        return null;
+    }
+
+    function loadChannels(url, mode) {
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('channel-list').style.display = 'none';
+        channels = [];
+        currentMode = mode;
+        fetch(url).then(res => res.text()).then(data => {
+            const lines = data.split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i].startsWith('#EXTINF:')) {
+                    const name = lines[i].split(',')[1]?.trim() || 'Canal';
+                    const urlLine = lines[i + 1];
+                    if (urlLine) {
+                        const id = extractId(urlLine);
+                        if (id) channels.push({ name, logo: FIXED_LOGO, id });
+                    }
+                }
+            }
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('channel-list').style.display = 'grid';
+            render(channels);
+        }).catch(err => {
+            console.error('Error cargando M3U:', err);
+            document.getElementById('loading').innerText = 'Error al cargar canales';
+        });
+    }
+
+    function render(list) {
+        document.getElementById('channel-list').innerHTML = list.map(c => `
+            <div class="card" onclick="openChannel('${c.id}', this)">
+                <img src="${c.logo}" onerror="this.onerror=null; this.src='${FIXED_LOGO}';">
+                <span>${c.name}</span>
+            </div>
+        `).join('');
+    }
+
+    function openChannel(id, cardElement) {
+        if (selectedCard) selectedCard.classList.remove('selected');
+        cardElement.classList.add('selected');
+        selectedCard = cardElement;
+        window.location = `acestream://${id}`;
+    }
+
+    function filter() {
+        const q = document.getElementById('search').value.toLowerCase();
+        render(channels.filter(c => c.name.toLowerCase().includes(q)));
+    }
+
+    btnCanales.onclick = function() {
+        setActiveButton(this);
+        loadChannels(MAIN_M3U, 'canales');
+    };
+
+    btnEventos.onclick = function() {
+        setActiveButton(this);
+        loadChannels(EVENTS_M3U, 'eventos');
+    };
+
+    // Carga inicial
+    setActiveButton(btnCanales);
+    loadChannels(MAIN_M3U, 'canales');
+</script>
+
+</body>
+</html>
