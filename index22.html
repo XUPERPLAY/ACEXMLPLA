@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACEX𝕄𝕃ℙ𝕃𝔸™😈⚔️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Teko:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00f0ff; /* Cian */
+            --secondary-color: #ff0055; /* Rosa/Red */
+            --accent-color: #7000ff; /* Púrpura */
+            --bg-dark: #050505;
+            --glass: rgba(10, 10, 20, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- CARRUSEL DE FONDO (REALISTA Y FLUIDO) --- */
+        .bg-gallery {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out; /* Transición suave */
+            transform: scale(1.05); /* Ligero zoom para evitar bordes */
+        }
+
+        /* 8 Imágenes de alta calidad temática deportiva */
+        .bg-image:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 0s; }
+        .bg-image:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 3s; }
+        .bg-image:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 6s; }
+        .bg-image:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 9s; }
+        .bg-image:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 12s; }
+        .bg-image:nth-child(6) { background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 15s; }
+        .bg-image:nth-child(7) { background-image: url('https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 18s; }
+        .bg-image:nth-child(8) { background-image: url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 21s; }
+
+        /* Animación Crossfade: Funde una imagen en la siguiente */
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: scale(1.05); }
+            8% { opacity: 1; } /* Aparece rápido */
+            25% { opacity: 1; transform: scale(1); } /* Mantiene y hace zoom lento */
+            33% { opacity: 0; transform: scale(1); } /* Desvanece */
+            100% { opacity: 0; }
+        }
+
+        /* Overlay oscuro para legibilidad */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- HEADER FIJO --- */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(5, 5, 15, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 8px 10px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 30px;
+            filter: drop-shadow(0 0 5px var(--primary-color));
+        }
+
+        .title {
+            font-family: 'Teko', sans-serif;
+            font-size: 28px;
+            line-height: 1;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px var(--primary-color);
+            margin: 0;
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .btn {
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .btn.active {
+            background: var(--primary-color);
+            color: #000;
+            border-color: var(--primary-color);
+            font-weight: 700;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .search-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 5px;
+            padding: 0 10px;
+        }
+
+        .instructions {
+            font-size: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+            letter-spacing: 0.5px;
+        }
+
+        #search {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            width: 100px;
+            transition: all 0.3s;
+        }
+
+        #search:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.3);
+            width: 140px;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            padding-top: 130px;
+            padding-bottom: 70px;
+            padding-left: 15px;
+            padding-right: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 18px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- CARDS SPECTACULAR --- */
+        .card {
+            background: rgba(10, 10, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        /* Efecto de luz móvil en los bordes */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
+            background-size: 400% 400%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            background: rgba(20, 20, 35, 0.8);
+        }
+
+        .card img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+            transition: transform 0.3s;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card span {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .card.selected {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        /* --- FOOTER FIJO Y TRANSPARENTE --- */
+        footer {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(0, 0, 0, 0.3); /* Muy transparente */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 10px;
+            font-size: 10px;
+            color: #fff;
+            text-align: center;
+            z-index: 100;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-shadow: 0 1px 3px black;
+        }
+
+        /* Loader */
+        .loader-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            transition: opacity 0.5s;
+        }
+        .loader { width: 40px; height: 40px; border: 4px solid var(--primary-color); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+
+    <!-- FONDO CARRUSEL -->
+    <div class="bg-gallery">
+        <div class="bg-image"></div><div class="bg-image"></div>
+        <div class="bg-image"></div><div class="bg-image"></div>
+        <div class="bg-image"></div><div class="bg-image"></div>
+        <div class="bg-image"></div><div class="bg-image"></div>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- LOADER -->
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="Logo" class="logo">
+                <h2 class="title">ACEX𝕄𝕃ℙ𝕃𝔸™😈⚔️</h2>
+            </div>
+            
+            <div class="controls-row">
+                <a href="#" class="btn">Aceserve+Vlc</a>
+                <a href="#" class="btn">Acestream</a>
+                <button class="btn active" id="btn-canales">Canales</button>
+                <button class="btn" id="btn-eventos">Eventos</button>
+            </div>
+
+            <div class="search-row">
+                <div class="instructions">Utiliza Aceserve + VLC ó Acestream</div>
+                <input type="text" id="search" placeholder="BUSCAR..." onkeyup="filter()">
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="main-content" id="channel-list"></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <b>ACEX𝕄𝕃ℙ𝕃𝔸™🙉 ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️😈
+    </footer>
+
+<script>
+    const MAIN_M3U = 'https://ipfs.io/ipns/k2k4r8oqlcjxsritt5mczkcn4mmvcmymbqw7113fz2flkrerfwfps004/data/listas/lista_iptv.m3u';
+    const EVENTS_M3U = 'https://raw.githubusercontent.com/Icastresana/lista1/main/eventos.m3u';
+    const FIXED_LOGO = 'https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png';
+
+    let channels = [];
+    let selectedCard = null;
+    let currentMode = 'canales';
+
+    const btnCanales = document.getElementById('btn-canales');
+    const btnEventos = document.getElementById('btn-eventos');
+    const loader = document.getElementById('loader');
+
+    function setActiveButton(activeBtn) {
+        btnCanales.classList.remove('active');
+        btnEventos.classList.remove('active');
+        activeBtn.classList.add('active');
+    }
+
+    function extractId(rawUrl) {
+        const url = rawUrl.trim();
+        if (url.startsWith('acestream://')) return url.substring(12);
+        if (/^[a-f0-9]{40}$/i.test(url)) return url;
+        const arrowMatch = url.match(/([a-f0-9]{40})\s*-->/i);
+        if (arrowMatch) return arrowMatch[1];
+        const idMatch = url.match(/id=([a-f0-9]{40})/i);
+        if (idMatch) return idMatch[1];
+        return null;
+    }
+
+    function loadChannels(url, mode) {
+        loader.style.opacity = 1;
+        loader.style.pointerEvents = 'all';
+        document.getElementById('channel-list').innerHTML = '';
+        channels = [];
+        currentMode = mode;
+        
+        fetch(url).then(res => res.text()).then(data => {
+            const lines = data.split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i].startsWith('#EXTINF:')) {
+                    const name = lines[i].split(',')[1]?.trim() || 'Canal';
+                    const urlLine = lines[i + 1];
+                    if (urlLine) {
+                        const id = extractId(urlLine);
+                        if (id) channels.push({ name, logo: FIXED_LOGO, id });
+                    }
+                }
+            }
+            
+            setTimeout(() => {
+                loader.style.opacity = 0;
+                loader.style.pointerEvents = 'none';
+                render(channels);
+            }, 500); 
+        }).catch(err => {
+            console.error('Error:', err);
+            loader.innerHTML = '<div style="color:white; font-family:sans-serif;">Error de conexión</div>';
+        });
+    }
+
+    function render(list) {
+        const container = document.getElementById('channel-list');
+        container.innerHTML = list.map(c => `
+            <div class="card" onclick="openChannel('${c.id}', this)">
+                <img src="${c.logo}" onerror="this.onerror=null; this.src='${FIXED_LOGO}';">
+                <span>${c.name}</span>
+            </div>
+        `).join('');
+    }
+
+    function openChannel(id, cardElement) {
+        if (selectedCard) selectedCard.classList.remove('selected');
+        cardElement.classList.add('selected');
+        selectedCard = cardElement;
+        window.location = `acestream://${id}`;
+    }
+
+    function filter() {
+        const q = document.getElementById('search').value.toLowerCase();
+        render(channels.filter(c => c.name.toLowerCase().includes(q)));
+    }
+
+    btnCanales.onclick = function() {
+        setActiveButton(this);
+        loadChannels(MAIN_M3U, 'canales');
+    };
+
+    btnEventos.onclick = function() {
+        setActiveButton(this);
+        loadChannels(EVENTS_M3U, 'eventos');
+    };
+
+    // Inicio
+    setActiveButton(btnCanales);
+    loadChannels(MAIN_M3U, 'canales');
+</script>
+
+</body>
+</html>
