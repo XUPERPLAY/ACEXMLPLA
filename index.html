@@ -196,7 +196,7 @@
 
         /* --- MAIN CONTENT --- */
         .main-content {
-            padding-top: 130px;
+            padding-top: 160px; /* MARGEN AUMENTADO PARA EVITAR QUE TAPE EL HEADER */
             padding-bottom: 70px;
             padding-left: 15px;
             padding-right: 15px;
@@ -287,6 +287,29 @@
             box-shadow: 0 0 20px var(--primary-color);
         }
 
+        /* --- ESTILO BADGE LIVE (EVENTOS) --- */
+        .live-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: #ff0000;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            z-index: 10;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+            animation: pulse-live 1.5s infinite;
+        }
+
+        @keyframes pulse-live {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
         /* --- FOOTER FIJO Y TRANSPARENTE --- */
         footer {
             position: fixed;
@@ -375,6 +398,7 @@
     let channels = [];
     let selectedCard = null;
     let currentMode = 'canales';
+    let liveUpdateInterval = null; // Intervalo para actualizar live badges
 
     const btnCanales = document.getElementById('btn-canales');
     const btnEventos = document.getElementById('btn-eventos');
@@ -397,6 +421,31 @@
         return null;
     }
 
+    // --- FUNCIONES PARA DETECTAR LIVE ---
+    function parseEventTime(name) {
+        // Busca patrones de hora tipo 20:30, 15:00, etc
+        const match = name.match(/(\d{1,2}):(\d{2})/);
+        if (match) {
+            return { hour: parseInt(match[1]), minute: parseInt(match[2]) };
+        }
+        return null;
+    }
+
+    function isEventLive(name) {
+        const time = parseEventTime(name);
+        if (!time) return false;
+
+        const now = new Date();
+        const currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
+        const eventTotalMinutes = time.hour * 60 + time.minute;
+
+        // Consideramos "Live" desde la hora de inicio hasta 2 horas y media después (duración estimada evento)
+        const diff = currentTotalMinutes - eventTotalMinutes;
+        
+        // Si la diferencia está entre -5 minutos (casi empieza) y 150 minutos (2.5h), está en vivo
+        return diff >= -5 && diff <= 150;
+    }
+
     function loadChannels(url, mode) {
         loader.style.opacity = 1;
         loader.style.pointerEvents = 'all';
@@ -404,6 +453,9 @@
         channels = [];
         currentMode = mode;
         
+        // Limpiar intervalo anterior si existe
+        if(liveUpdateInterval) clearInterval(liveUpdateInterval);
+
         fetch(url).then(res => res.text()).then(data => {
             const lines = data.split('\n');
             for (let i = 0; i < lines.length; i++) {
@@ -421,6 +473,11 @@
                 loader.style.opacity = 0;
                 loader.style.pointerEvents = 'none';
                 render(channels);
+                
+                // Si estamos en Eventos, actualizamos cada minuto por si cambia el estado Live
+                if (mode === 'eventos') {
+                    liveUpdateInterval = setInterval(() => render(channels), 60000);
+                }
             }, 500); 
         }).catch(err => {
             console.error('Error:', err);
@@ -430,12 +487,21 @@
 
     function render(list) {
         const container = document.getElementById('channel-list');
-        container.innerHTML = list.map(c => `
-            <div class="card" onclick="openChannel('${c.id}', this)">
-                <img src="${c.logo}" onerror="this.onerror=null; this.src='${FIXED_LOGO}';">
-                <span>${c.name}</span>
-            </div>
-        `).join('');
+        container.innerHTML = list.map(c => {
+            // Lógica del badge LIVE
+            let liveBadgeHtml = '';
+            if (currentMode === 'eventos' && isEventLive(c.name)) {
+                liveBadgeHtml = '<div class="live-badge">LIVE</div>';
+            }
+
+            return `
+                <div class="card" onclick="openChannel('${c.id}', this)">
+                    ${liveBadgeHtml}
+                    <img src="${c.logo}" onerror="this.onerror=null; this.src='${FIXED_LOGO}';">
+                    <span>${c.name}</span>
+                </div>
+            `;
+        }).join('');
     }
 
     function openChannel(id, cardElement) {
