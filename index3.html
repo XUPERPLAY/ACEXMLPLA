@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ACEX𝕄𝕃ℙ𝕃𝔸™😈⚔️</title>
+    <title>ACEX𝕄𝕃𝕃𝔸™😈️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -11,9 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         :root {
-            --primary-color: #00f0ff; /* Cian del original */
-            --secondary-color: #ff0055; /* Rosa/Red del original */
-            --accent-color: #7000ff; /* Púrpura del original */
+            --primary-color: #00f0ff;
+            --secondary-color: #ff0055;
+            --accent-color: #7000ff;
             --neon-blue: #00f5ff;
             --neon-pink: #ff00aa;
             --bg-dark: #050505;
@@ -27,33 +27,21 @@
             font-family: 'Inter', sans-serif; overflow-x: hidden; min-height: 100vh;
         }
 
-        .bg-gallery { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-        .bg-image {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center; opacity: 0; transform: scale(1.05);
-            filter: blur(0px) brightness(1);
+        /* VIDEO DE FONDO */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
         }
-        /* 8 Imágenes de alta calidad temática deportiva del original */
-        .bg-image:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 0s; }
-        .bg-image:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 3s; }
-        .bg-image:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 6s; }
-        .bg-image:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 9s; }
-        .bg-image:nth-child(5) { background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 12s; }
-        .bg-image:nth-child(6) { background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 15s; }
-        .bg-image:nth-child(7) { background-image: url('https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 18s; }
-        .bg-image:nth-child(8) { background-image: url('https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'); animation: fadeInOut 24s infinite 21s; }
-        
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: scale(1.05); }
-            8% { opacity: 1; transform: scale(1); } 
-            25% { opacity: 1; transform: scale(1); }
-            33% { opacity: 0; transform: scale(1); } 
-            100% { opacity: 0; }
-        }
+
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.8) 100%);
-            z-index: 0; pointer-events: none;
+            z-index: -1; pointer-events: none;
         }
 
         .header {
@@ -97,6 +85,43 @@
             border-color: var(--primary-color); 
             font-weight: 700; 
             box-shadow: 0 0 25px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
+        }
+        
+        /* BOTÓN LIVE */
+        .btn-live {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.3), rgba(255, 0, 170, 0.3));
+            border: 1px solid var(--secondary-color);
+            color: #fff;
+            animation: livePulse 1.5s ease-in-out infinite;
+            position: relative;
+        }
+        .btn-live::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 8px;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: #ff0000;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+            animation: liveDot 1s ease-in-out infinite;
+        }
+        .btn-live .live-text {
+            margin-left: 10px;
+        }
+        .btn-live.active {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.5), rgba(255, 0, 170, 0.5));
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.5), inset 0 0 15px rgba(255, 0, 85, 0.2);
+        }
+        @keyframes livePulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 85, 0.3); }
+            50% { box-shadow: 0 0 25px rgba(255, 0, 85, 0.6); }
+        }
+        @keyframes liveDot {
+            0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+            50% { opacity: 0.4; transform: translateY(-50%) scale(0.8); }
         }
         
         .search-row { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 500px; margin-top: 8px; padding: 0 10px; }
@@ -394,18 +419,16 @@
 </head>
 <body>
 
-    <div class="bg-gallery">
-        <div class="bg-image"></div><div class="bg-image"></div>
-        <div class="bg-image"></div><div class="bg-image"></div>
-        <div class="bg-image"></div><div class="bg-image"></div>
-        <div class="bg-image"></div><div class="bg-image"></div>
-    </div>
+    <!-- VIDEO DE FONDO -->
+    <video id="bg-video" autoplay muted loop playsinline webkit-playsinline>
+        <source src="https://i.imgur.com/9DTX9WP.mp4" type="video/mp4">
+    </video>
     <div class="overlay"></div>
 
     <div id="welcome-overlay">
         <div class="welcome-card">
             <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="ACEX𝕄𝕃ℙ𝕃𝔸" class="welcome-logo">
-            <h3>ACEX𝕄𝕃ℙ𝕃𝔸</h3>
+            <h3>ACEX𝕄ℙ𝕃𝔸</h3>
             <p>Para el correcto funcionamiento de <b>Aceserve</b>, ve a la configuración de este sitio en tu navegador y permite el <b>acceso a red local</b>.</p>
             <button class="welcome-btn" onclick="showIntroVideo()" tabindex="0">ENTENDIDO</button>
         </div>
@@ -413,13 +436,13 @@
 
     <div id="intro-video-overlay">
         <video id="intro-video" autoplay muted playsinline webkit-playsinline>
-            <source src="https://i.imgur.com/OVJwKnE.mp4" type="video/mp4">
+            <source src="https://i.imgur.com/wORszzL.mp4" type="video/mp4">
         </video>
     </div>
 
     <div id="loader" class="loader-container">
-        <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="ACEX𝕄𝕃ℙ𝕃𝔸" class="loader-img">
-        <div class="loader-text">ACEX𝕄𝕃ℙ𝕃𝔸</div>
+        <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="ACEX𝕄𝕃ℙ𝔸" class="loader-img">
+        <div class="loader-text">ACEX𝕃ℙ𝕃𝔸</div>
     </div>
 
     <div class="modal-overlay" id="modal">
@@ -467,13 +490,14 @@
         <div class="header-content">
             <div class="header-top">
                 <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="Logo" class="logo">
-                <h2 class="title">ACEX𝕄𝕃ℙ𝕃𝔸™😈⚔️</h2>
+                <h2 class="title">ACEX𝕃ℙ𝕃𝔸™😈⚔️</h2>
             </div>
             <div class="controls-row">
                 <a href="https://play.google.com/store/apps/details?id=org.aceserve.player" class="btn" tabindex="0" target="_blank">Aceserve+Vlc</a>
                 <a href="https://play.google.com/store/apps/details?id=org.acestream.engine" class="btn" tabindex="0" target="_blank">Acestream</a>
                 <button class="btn active" id="btn-canales" tabindex="0">Canales</button>
                 <button class="btn" id="btn-eventos" tabindex="0">Eventos</button>
+                <button class="btn btn-live" id="btn-live" tabindex="0"><span class="live-text">LIVE</span></button>
             </div>
             <div class="search-row">
                 <div class="instructions">Utiliza Aceserve + VLC ó Acestream</div>
@@ -485,7 +509,7 @@
     <div class="main-content" id="channel-list"></div>
 
     <footer>
-        <b>ACEX𝕄𝕃ℙ𝕃𝔸™🙉 ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️😈
+        <b>ACEX𝕄𝕃𝕃𝔸™🙉 ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️
     </footer>
 
 <script>
@@ -507,6 +531,7 @@
 
     var btnCanales = document.getElementById('btn-canales');
     var btnEventos = document.getElementById('btn-eventos');
+    var btnLive = document.getElementById('btn-live');
     var loader = document.getElementById('loader');
     var modal = document.getElementById('modal');
     var modalName = document.getElementById('modal-name');
@@ -555,6 +580,7 @@
     function setActiveButton(b) {
         btnCanales.classList.remove('active');
         btnEventos.classList.remove('active');
+        btnLive.classList.remove('active');
         b.classList.add('active');
     }
 
@@ -577,7 +603,10 @@
     function isEventLive(n) {
         var t = parseEventTime(n);
         if (!t) return false;
-        var d = (new Date().getHours() * 60 + new Date().getMinutes()) - (t.hour * 60 + t.minute);
+        var now = new Date();
+        var currentTotalMinutes = now.getHours() * 60 + now.getMinutes();
+        var eventTotalMinutes = t.hour * 60 + t.minute;
+        var d = currentTotalMinutes - eventTotalMinutes;
         return d >= -5 && d <= 150;
     }
 
@@ -781,7 +810,11 @@
                 render(channels);
                 if (mode === 'eventos') {
                     liveUpdateInterval = setInterval(function() {
-                        render(visibleList.length ? visibleList : channels);
+                        if (currentMode === 'live') {
+                            renderLiveChannels();
+                        } else {
+                            render(visibleList.length ? visibleList : channels);
+                        }
                     }, 60000);
                 }
             }, 600);
@@ -789,6 +822,20 @@
             console.error('Error:', err);
             loader.innerHTML = '<img src="' + FIXED_LOGO + '" alt="Error" class="loader-img" style="border-color:var(--secondary-color);box-shadow:0 0 30px rgba(255,0,85,0.5);"><div class="loader-text" style="background:linear-gradient(135deg, var(--secondary-color), var(--neon-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Error de conexion</div><p style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:8px;">Reintenta en unos segundos</p>';
         });
+    }
+
+    // FUNCIÓN PARA MOSTRAR SOLO EVENTOS LIVE
+    function renderLiveChannels() {
+        var liveChannels = [];
+        
+        eventsChannels.forEach(function(ch) {
+            if (isEventLive(ch.name)) {
+                liveChannels.push(ch);
+            }
+        });
+        
+        currentMode = 'live';
+        render(liveChannels);
     }
 
     function render(list) {
@@ -801,7 +848,7 @@
         var html = '';
         for (var i = 0; i < list.length; i++) {
             var ch = list[i];
-            var live = (currentMode === 'eventos') && isEventLive(ch.name) ? '<div class="live-badge">LIVE</div>' : '';
+            var live = (currentMode === 'eventos' || currentMode === 'live') && isEventLive(ch.name) ? '<div class="live-badge">LIVE</div>' : '';
             html += '<div class="card" onclick="handleCardClick(' + i + ',this)" tabindex="0">' +
                 live +
                 '<img src="' + FIXED_LOGO + '" alt="' + safeText(ch.name) + '" onerror="this.onerror=null;this.src=\'' + FIXED_LOGO + '\';">' +
@@ -832,6 +879,12 @@
 
     btnCanales.onclick = function() { setActiveButton(btnCanales); loadChannels(MAIN_M3U, 'canales'); };
     btnEventos.onclick = function() { setActiveButton(btnEventos); loadChannels(EVENTS_M3U, 'eventos'); };
+    
+    // BOTÓN LIVE
+    btnLive.onclick = function() { 
+        setActiveButton(btnLive); 
+        renderLiveChannels();
+    };
 </script>
 
 </body>
