@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ℕ𝔼ACEX𝕄𝕃𝕃𝔸™😈️</title>
+    <title>ℕ𝔼ACEX𝕄𝕃ℙ𝔸™😈️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -182,8 +182,8 @@
 
     <div id="welcome-overlay">
         <div class="welcome-card">
-            <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="𝔼𝕎ACEX𝕃ℙ𝕃𝔸" class="welcome-logo">
-            <h3>ℕ𝔼ACEX𝕄𝕃𝕃𝔸</h3>
+            <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="ℕ𝔼𝕎ACEX𝕄𝕃ℙ𝔸" class="welcome-logo">
+            <h3>ℕ𝔼𝕎ACEX𝕄𝕃ℙ𝔸</h3>
             <p>Para el correcto funcionamiento de <b>Aceserve</b>, Sino te funciona ve a la configuración de este sitio en tu navegador y permite el <b>acceso a red local</b>.</p>
             <button class="welcome-btn" onclick="showIntroVideo()" tabindex="0">ENTENDIDO</button>
         </div>
@@ -196,8 +196,8 @@
     </div>
 
     <div id="loader" class="loader-container">
-        <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="ℕ𝔼𝕎ACEX𝕃ℙ𝕃𝔸" class="loader-img">
-        <div class="loader-text">ℕ𝕎ACEX𝕄𝕃ℙ𝕃𝔸</div>
+        <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="𝔼𝕎ACEX𝕃ℙ𝕃𝔸" class="loader-img">
+        <div class="loader-text">ℕ𝔼ACEX𝕄𝕃ℙ𝔸</div>
     </div>
 
     <div class="modal-overlay" id="modal">
@@ -227,7 +227,7 @@
                 <div class="modal-option" id="opt-tv" tabindex="0">
                     <div class="option-icon tv"><i class="fas fa-tv"></i></div>
                     <div class="option-text">
-                        <div class="option-title">📺 Enviar a mi TV</div>
+                        <div class="option-title"> Enviar a mi TV</div>
                         <div class="option-desc">Compartir con Web Video Caster</div>
                     </div>
                     <div class="option-arrow"><i class="fas fa-chevron-right"></i></div>
@@ -269,13 +269,13 @@
         <div class="header-content">
             <div class="header-top">
                 <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="Logo" class="logo">
-                <h2 class="title">𝔼𝕎ACEX𝕃ℙ𝕃𝔸™😈⚔️</h2>
+                <h2 class="title">ℕ𝔼𝕎ACEX𝕄𝕃ℙ𝔸™😈⚔️</h2>
                 <button class="btn" id="btn-settings" tabindex="0" style="padding: 6px 10px; font-size: 14px;">⚙️</button>
             </div>
             <div class="controls-row">
                 <a href="https://play.google.com/store/apps/details?id=org.aceserve.player" class="btn" tabindex="0" target="_blank">️ Aceserve</a>
                 <a href="https://play.google.com/store/apps/details?id=org.acestream.engine" class="btn" tabindex="0" target="_blank">⬇️ Acestream</a>
-                <button class="btn active" id="btn-canales" tabindex="0">📺Canales</button>
+                <button class="btn active" id="btn-canales" tabindex="0">Canales</button>
                 <button class="btn" id="btn-eventos" tabindex="0">🗓️Eventos</button>
                 <button class="btn btn-live" id="btn-live" tabindex="0"><span class="live-text">🚨LIVE</span></button>
             </div>
@@ -289,7 +289,7 @@
     <div class="main-content" id="channel-list"></div>
 
     <footer>
-        <b>ℕ𝕎ACEX𝕄𝕃ℙ𝕃𝔸™🙉 ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️
+        <b>𝔼𝕎ACEX𝕃ℙ𝕃𝔸™🙉 ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️
     </footer>
 
 <script>
@@ -526,7 +526,7 @@
         
         if (navigator.share) {
             navigator.share({
-                title: 'ℕ𝔼ACEX𝕄𝕃𝕃𝔸 - ' + name,
+                title: 'ℕ𝔼𝕎ACEX𝕄ℙ𝕃𝔸 - ' + name,
                 text: 'Enviar canal a TV: ' + name,
                 url: streamUrl
             }).then(function() {
@@ -571,46 +571,24 @@
         player.classList.add('visible');
         history.pushState({ playerOpen: true }, '');
         
-        // USAR 127.0.0.1 como en el que funciona
         var hlsUrl = 'http://127.0.0.1:6878/ace/manifest.m3u8?id=' + id + '&transcode_audio=1';
         
         if (Hls.isSupported()) {
-            hlsInstance = new Hls({ 
-                enableWorker: true, 
-                lowLatencyMode: true, 
-                maxBufferLength: 30, 
-                maxMaxBufferLength: 60 
-            });
+            hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true, maxBufferLength: 30, maxMaxBufferLength: 60 });
             hlsInstance.loadSource(hlsUrl);
             hlsInstance.attachMedia(playerVideo);
-            hlsInstance.on(Hls.Events.MANIFEST_PARSED, function() { 
-                playerVideo.play().catch(function(e) { 
-                    console.log('Autoplay prevented:', e); 
-                }); 
-            });
+            hlsInstance.on(Hls.Events.MANIFEST_PARSED, function() { playerVideo.play().catch(function() {}); });
             hlsInstance.on(Hls.Events.ERROR, function(event, data) {
                 if (data.fatal) {
-                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) { 
-                        showToast('Error de red - ¿Aceserve abierto?'); 
-                        hlsInstance.startLoad(); 
-                    } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) { 
-                        showToast('Error de medio - reintentando...'); 
-                        hlsInstance.recoverMediaError(); 
-                    } else { 
-                        showToast('Error fatal - prueba Acestream'); 
-                        closePlayer(true); 
-                    }
+                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) { showToast('Error de red - ¿Aceserve abierto?'); hlsInstance.startLoad(); } 
+                    else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) { showToast('Error de medio - reintentando...'); hlsInstance.recoverMediaError(); } 
+                    else { showToast('Error fatal - prueba Acestream'); closePlayer(true); }
                 }
             });
         } else if (playerVideo.canPlayType('application/vnd.apple.mpegurl')) {
             playerVideo.src = hlsUrl;
-            playerVideo.addEventListener('loadedmetadata', function() { 
-                playerVideo.play().catch(function() {}); 
-            });
-        } else { 
-            showToast('Navegador no compatible con HLS'); 
-            closePlayer(true); 
-        }
+            playerVideo.addEventListener('loadedmetadata', function() { playerVideo.play().catch(function() {}); });
+        } else { showToast('Navegador no compatible con HLS'); closePlayer(true); }
     }
 
     function closePlayer(shouldGoBack) {
