@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ℕ𝔼ACEX𝕄𝕃𝕃𝔸™😈️</title>
+    <title>ℕ𝔼ACEX𝕄𝕃𝕃™😈️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Creepster&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -103,15 +103,12 @@
         /* VÍDEO DE FONDO EN BUCLE - CORREGIDO */
         .bg-video {
             position: fixed; 
-            top: 50%; 
-            left: 50%; 
-            min-width: 100%; 
-            min-height: 100%; 
-            width: auto; 
-            height: auto; 
-            transform: translate(-50%, -50%);
-            z-index: -1; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
             object-fit: cover;
+            z-index: -1; 
             filter: var(--video-filter);
         }
 
@@ -670,7 +667,7 @@
     <div id="welcome-overlay">
         <div class="welcome-card">
             <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="𝔼𝕎ACEX𝕃ℙ" class="welcome-logo">
-            <h3>ℕ𝔼ACEX𝕄𝕃𝔸 😈⚔️</h3>
+            <h3>ℕACEX𝕄𝕃 😈⚔️</h3>
             <p>Para el correcto funcionamiento de <b>Aceserve</b>, ve a la configuracion de este sitio en tu navegador y permite el <b>acceso a red local</b>.</p>
             <button class="welcome-btn" onclick="showIntroVideo()" tabindex="0">ENTENDIDO</button>
         </div>
@@ -683,8 +680,8 @@
     </div>
 
     <div id="loader" class="loader-container">
-        <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="𝔼ACEX𝕃ℙ𝕃𝔸" class="loader-img">
-        <div class="loader-text">ℕ𝕎ACEX𝕄𝕃ℙ𝔸</div>
+        <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="𝔼ACEX𝕃ℙ𝔸" class="loader-img">
+        <div class="loader-text">ℕACEX𝕄𝕃𝔸</div>
     </div>
 
     <div class="modal-overlay" id="modal">
@@ -756,7 +753,7 @@
         <div class="header-content">
             <div class="header-top">
                 <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="Logo" class="logo">
-                <h2 class="title">ℕ𝕎ACEX𝕃ℙ𝕃𝔸<span class="title-icons">😈⚔️</span></h2>
+                <h2 class="title">ℕACEX𝕃ℙ𝔸<span class="title-icons">😈⚔️</span></h2>
                 <button class="btn" id="btn-settings" tabindex="0" style="padding: 6px 10px; font-size: 14px;">⚙️</button>
             </div>
             <div class="controls-row">
@@ -852,21 +849,6 @@
         bgVideo.loop = true;
         bgVideo.muted = true;
         bgVideo.playsInline = true;
-        
-        // Ajustar video al redimensionar
-        function adjustVideoSize() {
-            var windowWidth = window.innerWidth;
-            var windowHeight = window.innerHeight;
-            var videoWidth = bgVideo.videoWidth || 1920;
-            var videoHeight = bgVideo.videoHeight || 1080;
-            
-            var scale = Math.max(windowWidth / videoWidth, windowHeight / videoHeight);
-            bgVideo.style.width = (videoWidth * scale) + 'px';
-            bgVideo.style.height = (videoHeight * scale) + 'px';
-        }
-        
-        bgVideo.addEventListener('loadedmetadata', adjustVideoSize);
-        window.addEventListener('resize', adjustVideoSize);
         
         bgVideo.addEventListener('ended', function() {
             this.currentTime = 0;
@@ -1094,7 +1076,7 @@
         
         if (navigator.share) {
             navigator.share({
-                title: '𝔼𝕎ACEX𝕃ℙ𝕃𝔸 - ' + name,
+                title: '𝔼𝕎ACEX𝕃ℙ𝔸 - ' + name,
                 text: 'Enviar canal a TV: ' + name,
                 url: streamUrl
             }).then(function() {
