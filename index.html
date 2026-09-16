@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ℕ𝔼ACEX𝕄𝕃ℙ𝕃𝔸™😈️</title>
+    <title>NEWACEXMLPLA™😈⚔️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Creepster&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -100,7 +100,7 @@
             font-family: var(--body-font); overflow-x: hidden; min-height: 100vh;
         }
 
-        /* VÍDEO DE FONDO EN BUCLE - CORREGIDO PARA QUE SE AJUSTE */
+        /* VÍDEO DE FONDO - AJUSTADO COMO EL DE INTRO (COMPLETO SIN RECORTAR) */
         .bg-video {
             position: fixed; 
             top: 50%; 
@@ -111,8 +111,9 @@
             height: auto; 
             transform: translate(-50%, -50%);
             z-index: -1; 
-            object-fit: cover;
+            object-fit: contain;
             filter: var(--video-filter);
+            background: #000;
         }
 
         .overlay {
@@ -166,34 +167,35 @@
             padding-right: 70px;
         }
         .header-content { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 800px; margin: 0 auto; }
-        .header-top { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; }
+        .header-top { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; flex-wrap: wrap; }
         .logo { 
             width: 40px; height: 40px; border-radius: 12px; object-fit: cover; 
             border: 2px solid var(--primary-color); 
             box-shadow: var(--logo-shadow);
         }
+        /* TÍTULO SIN BACKGROUND-CLIP PARA QUE LOS ICONOS HIJOS NO HEREDEN */
         .title { 
             font-family: var(--title-font); 
             font-size: clamp(18px, 5vw, 26px); line-height: 1; 
             text-transform: uppercase; letter-spacing: 2px; 
             text-shadow: var(--title-shadow); 
             margin: 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary-color);
             filter: var(--title-filter);
         }
-        /* ICONOS DEL TÍTULO - CORREGIDO CON FONDO OSCURO */
+        /* ICONOS DEL TÍTULO - CON FONDO PROPIO PARA VERSE LIMPIOS */
         .title-icons {
             font-size: clamp(20px, 5vw, 28px);
             margin-left: 8px;
             display: inline-block;
-            background: rgba(0,0,0,0.6);
-            padding: 2px 8px;
-            border-radius: 8px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.9));
-            -webkit-filter: drop-shadow(0 0 10px rgba(255,255,255,0.9));
+            background: rgba(0,0,0,0.7);
+            padding: 4px 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            -webkit-text-fill-color: initial;
+            color: #fff;
+            filter: none;
+            vertical-align: middle;
         }
         .controls-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; width: 100%; }
         .btn {
@@ -672,8 +674,8 @@
 
     <div id="welcome-overlay">
         <div class="welcome-card">
-            <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="𝔼𝕎ACEX𝕃ℙ" class="welcome-logo">
-            <h3>ℕACEX𝕄𝕃𝔸 😈️</h3>
+            <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="NEWACEXMLPLA" class="welcome-logo">
+            <h3>NEWACEXMLPLA ⚔️</h3>
             <p>Para el correcto funcionamiento de <b>Aceserve</b>, ve a la configuracion de este sitio en tu navegador y permite el <b>acceso a red local</b>.</p>
             <button class="welcome-btn" onclick="showIntroVideo()" tabindex="0">ENTENDIDO</button>
         </div>
@@ -686,8 +688,8 @@
     </div>
 
     <div id="loader" class="loader-container">
-        <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="𝔼ACEX𝕃ℙ𝔸" class="loader-img">
-        <div class="loader-text">ℕACEX𝕄𝕃𝔸</div>
+        <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="NEWACEXMLPLA" class="loader-img">
+        <div class="loader-text">NEWACEXMLPLA</div>
     </div>
 
     <div class="modal-overlay" id="modal">
@@ -717,7 +719,7 @@
                 <div class="modal-option" id="opt-tv" tabindex="0">
                     <div class="option-icon tv"><i class="fas fa-tv"></i></div>
                     <div class="option-text">
-                        <div class="option-title"> Enviar a mi TV</div>
+                        <div class="option-title">📺 Enviar a mi TV</div>
                         <div class="option-desc">Compartir con Web Video Caster</div>
                     </div>
                     <div class="option-arrow"><i class="fas fa-chevron-right"></i></div>
@@ -759,16 +761,20 @@
         <div class="header-content">
             <div class="header-top">
                 <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="Logo" class="logo">
-                <h2 class="title">ℕ𝔼ACEX𝕄𝕃𝕃𝔸<span class="title-icons">😈⚔️</span></h2>
+                <!-- TÍTULO CON ICONOS FUERA DEL H2 PARA QUE NO HEREDEN EL COLOR -->
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                    <h2 class="title" style="margin: 0;">NEWACEXMLPLA</h2>
+                    <span class="title-icons">😈⚔️</span>
+                </div>
                 <button class="btn" id="btn-settings" tabindex="0" style="padding: 6px 10px; font-size: 14px;">️</button>
             </div>
             <div class="controls-row">
                 <a href="https://play.google.com/store/apps/details?id=org.aceserve.player" class="btn" tabindex="0" target="_blank">⬇️ Aceserve</a>
-                <a href="https://play.google.com/store/apps/details?id=org.acestream.engine" class="btn" tabindex="0" target="_blank">️ Acestream</a>
-                <button class="btn active" id="btn-canales" tabindex="0">📺Canales</button>
-                <button class="btn" id="btn-eventos" tabindex="0">️Eventos</button>
+                <a href="https://play.google.com/store/apps/details?id=org.acestream.engine" class="btn" tabindex="0" target="_blank">⬇️ Acestream</a>
+                <button class="btn active" id="btn-canales" tabindex="0">📺 Canales</button>
+                <button class="btn" id="btn-eventos" tabindex="0"> Eventos</button>
                 <button class="btn" id="btn-eventos2" tabindex="0">Eventos 2</button>
-                <button class="btn btn-live" id="btn-live" tabindex="0"><span class="live-text">🚨LIVE</span></button>
+                <button class="btn btn-live" id="btn-live" tabindex="0"><span class="live-text">🚨 LIVE</span></button>
             </div>
             <div class="search-row">
                 <div class="instructions">Utiliza Acestream ó Aceserve Abierto En 2° Plano</div>
@@ -780,7 +786,7 @@
     <div class="main-content" id="channel-list"></div>
 
     <footer>
-        <b>ℕ𝔼ACEX𝕄𝕃𝕃™ 😈⚔️</b>¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️
+        <b>NEWACEXMLPLA™ ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️
     </footer>
 
 <script>
@@ -1065,7 +1071,7 @@
     playerTvBtn.addEventListener('click', function() {
         if (!currentPlayerId) return;
         if (!tvIp || tvIp.trim() === '') {
-            showToast('️ Primero configura la IP de tu TV (botón ⚙️)');
+            showToast('⚠️ Primero configura la IP de tu TV (botón ⚙️)');
             setTimeout(function() {
                 tvIpInput.value = '';
                 settingsModal.classList.add('visible');
@@ -1081,7 +1087,7 @@
         
         if (navigator.share) {
             navigator.share({
-                title: '𝔼𝕎ACEXℙ𝕃𝔸 - ' + name,
+                title: 'NEWACEXMLPLA - ' + name,
                 text: 'Enviar canal a TV: ' + name,
                 url: streamUrl
             }).then(function() {
@@ -1093,7 +1099,7 @@
             });
         } else {
             fallbackCopy(streamUrl);
-            showToast(' URL copiada. Pégala en Web Video Caster');
+            showToast('📋 URL copiada. Pégala en Web Video Caster');
         }
     }
 
