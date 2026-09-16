@@ -754,7 +754,7 @@
                 <div class="modal-option" id="opt-tv" tabindex="0">
                     <div class="option-icon tv"><i class="fas fa-tv"></i></div>
                     <div class="option-text">
-                        <div class="option-title">📺 Enviar a TV <span class="option-badge badge-tv">Misma Red</span></div>
+                        <div class="option-title"> Enviar a TV <span class="option-badge badge-tv">Misma Red</span></div>
                         <div class="option-desc">Compartir con Web Video Caster - Requiere misma red WiFi</div>
                     </div>
                     <div class="option-arrow"><i class="fas fa-chevron-right"></i></div>
@@ -864,6 +864,7 @@
     var optTv = document.getElementById('opt-tv');
     var tvIpInput = document.getElementById('tv-ip-input');
     var playerTvBtn = document.getElementById('player-tv-btn');
+    var themeSwitcher = document.querySelector('.theme-switcher');
 
     var IS_ANDROID = /Android/i.test(navigator.userAgent);
 
@@ -1162,6 +1163,10 @@
         if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
         playerVideo.removeAttribute('src'); playerVideo.load();
         player.classList.add('visible');
+        
+        // OCULTAR SELECTOR DE TEMA CUANDO EL REPRODUCTOR ESTÁ ABIERTO
+        if (themeSwitcher) themeSwitcher.style.display = 'none';
+        
         history.pushState({ playerOpen: true }, '');
         var hlsUrl = 'http://127.0.0.1:6878/ace/manifest.m3u8?id=' + id + '&transcode_audio=1';
         if (Hls.isSupported()) {
@@ -1185,6 +1190,10 @@
         if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
         playerVideo.pause(); playerVideo.removeAttribute('src'); playerVideo.load();
         player.classList.remove('visible');
+        
+        // MOSTRAR SELECTOR DE TEMA AL CERRAR EL REPRODUCTOR
+        if (themeSwitcher) themeSwitcher.style.display = 'flex';
+        
         currentPlayerId = null;
         currentPlayerName = null;
         playerTvBtn.classList.add('hidden');
@@ -1225,7 +1234,6 @@
         });
     }
 
-    // ✅ CORRECCIÓN: LIVE funciona directamente sin pasar antes por Eventos
     function renderLiveChannels() {
         if (eventsChannels.length === 0 && events2Channels.length === 0) {
             showToast('🔄 Cargando eventos...');
