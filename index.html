@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ℕ𝔼ACEX𝕄𝕃𝕃™😈️</title>
+    <title>ℕ𝔼ACEX𝕄𝕃ℙ𝕃𝔸™😈️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Creepster&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -100,15 +100,18 @@
             font-family: var(--body-font); overflow-x: hidden; min-height: 100vh;
         }
 
-        /* VÍDEO DE FONDO EN BUCLE - CORREGIDO */
+        /* VÍDEO DE FONDO EN BUCLE - CORREGIDO PARA QUE SE AJUSTE */
         .bg-video {
             position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover;
+            top: 50%; 
+            left: 50%; 
+            min-width: 100%; 
+            min-height: 100%; 
+            width: auto; 
+            height: auto; 
+            transform: translate(-50%, -50%);
             z-index: -1; 
+            object-fit: cover;
             filter: var(--video-filter);
         }
 
@@ -181,13 +184,16 @@
             background-clip: text;
             filter: var(--title-filter);
         }
-        /* ICONOS DEL TÍTULO - CORREGIDO PARA QUE SE VEAAN */
+        /* ICONOS DEL TÍTULO - CORREGIDO CON FONDO OSCURO */
         .title-icons {
             font-size: clamp(20px, 5vw, 28px);
             margin-left: 8px;
             display: inline-block;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.9)) drop-shadow(0 0 20px rgba(255,255,255,0.6));
-            -webkit-filter: drop-shadow(0 0 10px rgba(255,255,255,0.9)) drop-shadow(0 0 20px rgba(255,255,255,0.6));
+            background: rgba(0,0,0,0.6);
+            padding: 2px 8px;
+            border-radius: 8px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.9));
+            -webkit-filter: drop-shadow(0 0 10px rgba(255,255,255,0.9));
         }
         .controls-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; width: 100%; }
         .btn {
@@ -667,7 +673,7 @@
     <div id="welcome-overlay">
         <div class="welcome-card">
             <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="𝔼𝕎ACEX𝕃ℙ" class="welcome-logo">
-            <h3>ℕACEX𝕄𝕃 😈⚔️</h3>
+            <h3>ℕACEX𝕄𝕃𝔸 😈️</h3>
             <p>Para el correcto funcionamiento de <b>Aceserve</b>, ve a la configuracion de este sitio en tu navegador y permite el <b>acceso a red local</b>.</p>
             <button class="welcome-btn" onclick="showIntroVideo()" tabindex="0">ENTENDIDO</button>
         </div>
@@ -753,8 +759,8 @@
         <div class="header-content">
             <div class="header-top">
                 <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="Logo" class="logo">
-                <h2 class="title">ℕACEX𝕃ℙ𝔸<span class="title-icons">😈⚔️</span></h2>
-                <button class="btn" id="btn-settings" tabindex="0" style="padding: 6px 10px; font-size: 14px;">⚙️</button>
+                <h2 class="title">ℕ𝔼ACEX𝕄𝕃𝕃𝔸<span class="title-icons">😈⚔️</span></h2>
+                <button class="btn" id="btn-settings" tabindex="0" style="padding: 6px 10px; font-size: 14px;">️</button>
             </div>
             <div class="controls-row">
                 <a href="https://play.google.com/store/apps/details?id=org.aceserve.player" class="btn" tabindex="0" target="_blank">⬇️ Aceserve</a>
@@ -774,7 +780,7 @@
     <div class="main-content" id="channel-list"></div>
 
     <footer>
-        <b>ℕ𝔼ACEX𝕃ℙ𝔸™ 😈⚔️</b>¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️
+        <b>ℕ𝔼ACEX𝕄𝕃𝕃™ 😈⚔️</b>¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️
     </footer>
 
 <script>
@@ -843,7 +849,7 @@
     btnCyber.addEventListener('click', function() { setTheme('cyber'); });
     btnChucky.addEventListener('click', function() { setTheme('chucky'); });
 
-    // BUCLE DEL VÍDEO DE FONDO - CORREGIDO
+    // BUCLE DEL VÍDEO DE FONDO
     var bgVideo = document.querySelector('.bg-video');
     if (bgVideo) {
         bgVideo.loop = true;
@@ -867,7 +873,6 @@
             }
         });
         
-        // Forzar play al cargar
         window.addEventListener('load', function() {
             bgVideo.play().catch(function() {});
         });
@@ -1060,7 +1065,7 @@
     playerTvBtn.addEventListener('click', function() {
         if (!currentPlayerId) return;
         if (!tvIp || tvIp.trim() === '') {
-            showToast('⚠️ Primero configura la IP de tu TV (botón ⚙️)');
+            showToast('️ Primero configura la IP de tu TV (botón ⚙️)');
             setTimeout(function() {
                 tvIpInput.value = '';
                 settingsModal.classList.add('visible');
@@ -1076,7 +1081,7 @@
         
         if (navigator.share) {
             navigator.share({
-                title: '𝔼𝕎ACEX𝕃ℙ𝔸 - ' + name,
+                title: '𝔼𝕎ACEXℙ𝕃𝔸 - ' + name,
                 text: 'Enviar canal a TV: ' + name,
                 url: streamUrl
             }).then(function() {
@@ -1088,7 +1093,7 @@
             });
         } else {
             fallbackCopy(streamUrl);
-            showToast('📋 URL copiada. Pégala en Web Video Caster');
+            showToast(' URL copiada. Pégala en Web Video Caster');
         }
     }
 
