@@ -224,10 +224,10 @@
                     </div>
                     <div class="option-arrow"><i class="fas fa-chevron-right"></i></div>
                 </div>
-                <div class="modal-option" id="opt-tv" tabindex="0" style="display: none;">
+                <div class="modal-option" id="opt-tv" tabindex="0">
                     <div class="option-icon tv"><i class="fas fa-tv"></i></div>
                     <div class="option-text">
-                        <div class="option-title"> Enviar a mi TV</div>
+                        <div class="option-title">📺 Enviar a mi TV</div>
                         <div class="option-desc">Compartir con Web Video Caster</div>
                     </div>
                     <div class="option-arrow"><i class="fas fa-chevron-right"></i></div>
@@ -402,9 +402,7 @@
         }
         
         if (settingsVisible) { 
-            if (isInputFocused) {
-                return;
-            }
+            if (isInputFocused) { return; }
             if (e.key === 'Escape' || e.key === 'Back') { 
                 e.preventDefault(); 
                 settingsModal.classList.remove('visible'); 
@@ -440,11 +438,8 @@
         pendingName = ch.name;
         modalName.textContent = ch.name;
         
-        if (tvIp && tvIp.trim() !== '') {
-            optTv.style.display = 'flex';
-        } else {
-            optTv.style.display = 'none';
-        }
+        // CORRECCIÓN: Mostrar siempre la opción de TV, si no hay IP se avisará al pulsarla
+        optTv.style.display = 'flex';
         
         modal.classList.add('visible');
         setTimeout(function() { document.getElementById('opt-acestream').focus(); }, 100);
@@ -496,8 +491,16 @@
     });
 
     document.getElementById('opt-tv').addEventListener('click', function() {
-        if (!pendingId || !tvIp) {
-            showToast('⚠️ Configura primero la IP de tu TV (⚙️)');
+        if (!pendingId) return;
+        // CORRECCIÓN: Si no hay IP, abrir configuración automáticamente
+        if (!tvIp || tvIp.trim() === '') {
+            showToast('⚠️ Primero configura la IP de tu TV (botón ⚙️)');
+            closeModal();
+            setTimeout(function() {
+                tvIpInput.value = '';
+                settingsModal.classList.add('visible');
+                tvIpInput.focus();
+            }, 300);
             return;
         }
         var id = pendingId;
@@ -507,8 +510,14 @@
     });
 
     playerTvBtn.addEventListener('click', function() {
-        if (!currentPlayerId || !tvIp) {
-            showToast('⚠️ Configura primero la IP de tu TV (⚙️)');
+        if (!currentPlayerId) return;
+        if (!tvIp || tvIp.trim() === '') {
+            showToast('⚠️ Primero configura la IP de tu TV (botón ⚙️)');
+            setTimeout(function() {
+                tvIpInput.value = '';
+                settingsModal.classList.add('visible');
+                tvIpInput.focus();
+            }, 300);
             return;
         }
         sendToTV(currentPlayerId, currentPlayerName);
@@ -531,7 +540,7 @@
             });
         } else {
             fallbackCopy(streamUrl);
-            showToast(' URL copiada. Pégala en Web Video Caster');
+            showToast('📋 URL copiada. Pégala en Web Video Caster');
         }
     }
 
@@ -563,7 +572,10 @@
         playerVideo.load();
         player.classList.add('visible');
         history.pushState({ playerOpen: true }, '');
-        var hlsUrl = 'http://127.0.0.1:6878/ace/manifest.m3u8?id=' + id + '&transcode_audio=1';
+        
+        // CORRECCIÓN CRÍTICA: Usar 'localhost' en lugar de '127.0.0.1' para evitar bloqueo de Contenido Mixto en HTTPS (Cloudflare)
+        var hlsUrl = 'http://localhost:6878/ace/manifest.m3u8?id=' + id + '&transcode_audio=1';
+        
         if (Hls.isSupported()) {
             hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true, maxBufferLength: 30, maxMaxBufferLength: 60 });
             hlsInstance.loadSource(hlsUrl);
