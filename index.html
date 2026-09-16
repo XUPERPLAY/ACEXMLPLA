@@ -100,15 +100,13 @@
             font-family: var(--body-font); overflow-x: hidden; min-height: 100vh;
         }
 
-        /* VÍDEO DE FONDO - AJUSTADO COMO EL DE INTRO (COMPLETO SIN RECORTAR) */
+        /* VÍDEO DE FONDO - IGUAL QUE EL DE INTRO (COMPLETO Y CENTRADO) */
         .bg-video {
             position: fixed; 
             top: 50%; 
             left: 50%; 
-            min-width: 100%; 
-            min-height: 100%; 
-            width: auto; 
-            height: auto; 
+            width: 100%; 
+            height: 100%; 
             transform: translate(-50%, -50%);
             z-index: -1; 
             object-fit: contain;
@@ -166,12 +164,35 @@
             box-shadow: var(--header-shadow);
             padding-right: 70px;
         }
-        .header-content { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 800px; margin: 0 auto; }
-        .header-top { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; flex-wrap: wrap; }
+        .header-content { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 10px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        /* HEADER TOP - TODO EN UNA SOLA FILA HORIZONTAL */
+        .header-top { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            width: 100%;
+            flex-wrap: nowrap; /* EVITAR QUE SE APILLEN */
+        }
         .logo { 
             width: 40px; height: 40px; border-radius: 12px; object-fit: cover; 
             border: 2px solid var(--primary-color); 
             box-shadow: var(--logo-shadow);
+            flex-shrink: 0; /* QUE NO SE ENCOJA */
+        }
+        /* CONTENEDOR DEL TÍTULO E ICONOS JUNTOS */
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
         }
         /* TÍTULO SIN BACKGROUND-CLIP PARA QUE LOS ICONOS HIJOS NO HEREDEN */
         .title { 
@@ -182,11 +203,11 @@
             margin: 0;
             color: var(--primary-color);
             filter: var(--title-filter);
+            white-space: nowrap;
         }
         /* ICONOS DEL TÍTULO - CON FONDO PROPIO PARA VERSE LIMPIOS */
         .title-icons {
             font-size: clamp(20px, 5vw, 28px);
-            margin-left: 8px;
             display: inline-block;
             background: rgba(0,0,0,0.7);
             padding: 4px 10px;
@@ -195,7 +216,7 @@
             -webkit-text-fill-color: initial;
             color: #fff;
             filter: none;
-            vertical-align: middle;
+            white-space: nowrap;
         }
         .controls-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; width: 100%; }
         .btn {
@@ -648,6 +669,8 @@
             .main-content { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
             .card { padding: 10px; }
             .theme-switcher { top: auto; bottom: 60px; right: 10px; }
+            /* En móviles pequeños, permitir que el header se wrappee */
+            .header-top { flex-wrap: wrap; }
         }
 
         @media (min-width: 1200px) {
@@ -675,7 +698,7 @@
     <div id="welcome-overlay">
         <div class="welcome-card">
             <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="NEWACEXMLPLA" class="welcome-logo">
-            <h3>NEWACEXMLPLA ⚔️</h3>
+            <h3>NEWACEXMLPLA ️</h3>
             <p>Para el correcto funcionamiento de <b>Aceserve</b>, ve a la configuracion de este sitio en tu navegador y permite el <b>acceso a red local</b>.</p>
             <button class="welcome-btn" onclick="showIntroVideo()" tabindex="0">ENTENDIDO</button>
         </div>
@@ -759,17 +782,17 @@
 
     <div class="header">
         <div class="header-content">
+            <!-- TODO EN UNA SOLA FILA: LOGO + TÍTULO+ICONOS + BOTÓN SETTINGS -->
             <div class="header-top">
                 <img src="https://i.postimg.cc/D0sSXwHL/logo1-22-1156.png" alt="Logo" class="logo">
-                <!-- TÍTULO CON ICONOS FUERA DEL H2 PARA QUE NO HEREDEN EL COLOR -->
-                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;">
-                    <h2 class="title" style="margin: 0;">NEWACEXMLPLA</h2>
+                <div class="title-wrapper">
+                    <h2 class="title">NEWACEXMLPLA</h2>
                     <span class="title-icons">😈⚔️</span>
                 </div>
                 <button class="btn" id="btn-settings" tabindex="0" style="padding: 6px 10px; font-size: 14px;">️</button>
             </div>
             <div class="controls-row">
-                <a href="https://play.google.com/store/apps/details?id=org.aceserve.player" class="btn" tabindex="0" target="_blank">⬇️ Aceserve</a>
+                <a href="https://play.google.com/store/apps/details?id=org.aceserve.player" class="btn" tabindex="0" target="_blank">️ Aceserve</a>
                 <a href="https://play.google.com/store/apps/details?id=org.acestream.engine" class="btn" tabindex="0" target="_blank">⬇️ Acestream</a>
                 <button class="btn active" id="btn-canales" tabindex="0">📺 Canales</button>
                 <button class="btn" id="btn-eventos" tabindex="0"> Eventos</button>
@@ -786,7 +809,7 @@
     <div class="main-content" id="channel-list"></div>
 
     <footer>
-        <b>NEWACEXMLPLA™ ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈⚔️
+        <b>NEWACEXMLPLA™ ⚔️</b> ¡¡Y LO SABES!! ¡¡A MI... MLPLA!!..😈️
     </footer>
 
 <script>
@@ -1071,7 +1094,7 @@
     playerTvBtn.addEventListener('click', function() {
         if (!currentPlayerId) return;
         if (!tvIp || tvIp.trim() === '') {
-            showToast('⚠️ Primero configura la IP de tu TV (botón ⚙️)');
+            showToast('️ Primero configura la IP de tu TV (botón ⚙️)');
             setTimeout(function() {
                 tvIpInput.value = '';
                 settingsModal.classList.add('visible');
@@ -1099,7 +1122,7 @@
             });
         } else {
             fallbackCopy(streamUrl);
-            showToast('📋 URL copiada. Pégala en Web Video Caster');
+            showToast(' URL copiada. Pégala en Web Video Caster');
         }
     }
 
